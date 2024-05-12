@@ -1,0 +1,57 @@
+<!-- medication_manage.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用药管理系统</title>
+    <!-- Bootstrap CSS -->
+    <link href="../../static/css/css1/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'success_page2' %}">首页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2>提醒列表</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>提醒人</th>
+                    <th>药品名称</th>
+                    <th>用药时间</th>
+                    <th>药品图片</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medication in medications %}
+                <tr>
+                    <td>{{ medication.username }}</td>
+                    <td>{{ medication.name }}</td>
+                    <td>{{ medication.reminder_time }}</td>
+                    <td><img src="{{ medication.image.url }}" alt="药品图片" style="width:100px;"></td>
+                    <td>
+                        <form action="{% url 'medicationmanage' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="medication_id" value="{{ medication.id }}">
+                            <button type="submit" class="btn btn-danger">删除</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://webapps1.chicago.gov/cdn/Bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

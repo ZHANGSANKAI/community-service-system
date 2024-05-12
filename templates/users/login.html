@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区养老系统-登录</title>
+    <!-- 导入layui的样式表 -->
+    <link rel="stylesheet" href="../../static/lib/layui/css/layui.css">
+    <!-- 导入自己的样式表 -->
+    <link rel="stylesheet" href="../../static/css/login.css">
+</head>
+<body>
+    <!-- 头部的logo区域 -->
+    <div class="layui-main">
+        <img src="../../static/images/logo.png" alt="">
+    </div>
+
+    <!-- 登录区域 -->
+    <div class="loginAndRegBox">
+        <div class="title-box"></div>
+        <!-- 登陆的div -->
+        <div class="login-box">
+            <!-- 登陆的表单 -->
+            <form class="layui-form" method="post">
+                {% csrf_token %}
+                <!-- 用户姓名 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <label>
+                        <input type="text" name="username" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                    </label>
+                </div>
+                <!-- 密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <label>
+                        <input type="password" name="password" lay-verify="required|pwd" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                    </label>
+                </div>
+                <!-- 用户类型 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <label class="layui-form-label">用户类型</label>
+                    <div class="layui-input-block">
+                        <label>
+                            <select name="usertype" lay-verify="required">
+                                <option value="">请选择用户类型</option>
+                                <option value="user">用户</option>
+                                <option value="service">服务人员</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <!-- 登录按钮 -->
+                <div class="layui-form-item">
+                    <!-- lay-submit是区别是否是提交按钮的关键 -->
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal" lay-submit>登录</button>
+                </div>
+                <!-- 去注册按钮 -->
+                <div class="layui-form-item links">
+                    <a href="javascript:" id="link_reg">去注册账号</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 导入layui的js文件 -->
+    <script src="../../static/lib/layui/layui.all.js"></script>
+    <!-- 导入JQuery -->
+    <script src="../../static/lib/jquery.js"></script>
+    <!-- 导入自己的JavaScript脚本 -->
+    <script src="../../static/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食品管理系统</title>
+    <!-- Bootstrap CSS -->
+    <link href="../../static/css/css1/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">食品管理</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'foodmanage' %}">首页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2>编辑食物信息</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">保存更改</button>
+            <a href="{% url 'foodmanage' %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://webapps1.chicago.gov/cdn/Bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

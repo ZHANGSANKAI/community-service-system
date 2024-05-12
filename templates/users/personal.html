@@ -1,0 +1,117 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                var phoneNumber = $('#phonenumber').val();
+                var address = $('#address').val();
+                if (!phoneNumber || !address) {
+                    alert('请填写所有字段');
+                    event.preventDefault(); // 阻止表单提交
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="profile-container container">
+        <h1>个人中心</h1>
+        <div class="user-info">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">用户名:</label>
+                    <input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">手机号码:</label>
+                    <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="{{ user.phonenumber }}">
+                </div>
+                <div class="form-group">
+                    <label for="address">地址:</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ user.address }}">
+                </div>
+                <button type="submit" class="btn btn-primary">更新信息</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                var phoneNumber = $('#phonenumber').val();
+                var address = $('#address').val();
+                var currentPassword = $('#current-password').val();
+                var newPassword = $('#new-password').val();
+                var confirmPassword = $('#confirm-password').val();
+
+                if (!phoneNumber || !address) {
+                    alert('请填写所有字段');
+                    event.preventDefault(); // 阻止表单提交
+                } else if (currentPassword || newPassword || confirmPassword) {
+                    if (newPassword !== confirmPassword) {
+                        alert('新密码与确认密码不匹配');
+                        event.preventDefault(); // 阻止表单提交
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="profile-container container">
+        <h1>个人中心</h1>
+        <div class="user-info">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">用户名:</label>
+                    <input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">手机号码:</label>
+                    <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="{{ user.phonenumber }}">
+                </div>
+                <div class="form-group">
+                    <label for="address">地址:</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ user.address }}">
+                </div>
+                <!-- 新增修改密码的表单项 -->
+                <div class="form-group">
+                    <label for="current-password">当前密码:</label>
+                    <input type="password" class="form-control" id="current-password" name="current-password">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">新密码:</label>
+                    <input type="password" class="form-control" id="new-password" name="new-password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认新密码:</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+                </div>
+                <button type="submit" class="btn btn-primary">更新信息</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

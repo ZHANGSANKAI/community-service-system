@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>维修订单提交 - 录音上传</title>
+    <link rel="stylesheet" href="../../static/css/css1/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>提交维修订单(录音功能)</h2>
+        <button id="recordButton" class="btn btn-primary">开始录音</button>
+        <button id="stopButton" class="btn btn-secondary" disabled>停止录音</button>
+        <audio id="audioPlayback" controls></audio>
+        <form id="uploadForm" action="homeprotect" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p></p>
+            <label for="id_foodname">姓名:</label>
+            <p></p>
+            <label><input type="text" name="name" ></label>
+            <p></p>
+            <label for="id_foodname">电话号码:</label>
+            <p></p>
+            <label><input type="text" name="phone_number" ></label>
+            <p></p>
+            <label for="id_foodname">地址:</label>
+            <p></p>
+            <label><input type="text" name="address" ></label>
+            <p></p>
+            <input type="file" id="audioData" name="description_audio" style="display: none;">
+            <button type="submit" class="btn btn-success">提交订单</button>
+        </form>
+        <script>
+            let mediaRecorder;
+            let audioChunks = [];
+
+            document.getElementById("recordButton").addEventListener("click", function() {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        mediaRecorder = new MediaRecorder(stream);
+                        mediaRecorder.start();
+
+                        mediaRecorder.addEventListener("dataavailable", event => {
+                            audioChunks.push(event.data);
+                        });
+
+                        document.getElementById("stopButton").disabled = false;
+                        document.getElementById("recordButton").disabled = true;
+                    });
+            });
+
+            document.getElementById("stopButton").addEventListener("click", function() {
+                mediaRecorder.stop();
+
+                mediaRecorder.addEventListener("stop", () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/mp4' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = document.getElementById("audioPlayback");
+                    audio.src = audioUrl;
+
+                    const audioData = document.getElementById("audioData");
+                    const file = new File([audioBlob], "recording.mp4", { type: "audio/mp4" });
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    audioData.files = dataTransfer.files;
+
+                    document.getElementById("stopButton").disabled = true;
+                    document.getElementById("recordButton").disabled = false;
+                    audioChunks = [];  // 清空音频片段列表以便下次录音
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

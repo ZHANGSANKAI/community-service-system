@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/css1/bootstrap.min.css">
+    <title>Order Management</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'success_page2' %}">首页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container mt-5">
+    <h2>订单管理</h2>
+    {% for order in orders_data %}
+        <div class="card mb-3">
+            <div class="card-header">
+                订单 ID: {{ order.order_id }} - {{ order.username }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">电话号码: {{ order.phonenumber }}</li>
+                <li class="list-group-item">地址: {{ order.address }}</li>
+                <li class="list-group-item">
+                    <h5>订单款项:</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>食物名称</th>
+                                <th>数量</th>
+                                <th>价格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items %}
+                                <tr>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.food_price }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </li>
+                <li class="list-group-item">总价格: {{ order.total_price }}</li>
+                <!-- 删除按钮 -->
+                <li class="list-group-item">
+                    <form action="{% url 'dinnermanage' %}" method="post">
+                        {% csrf_token %}
+                        <!-- 隐藏字段用于存储 order_id -->
+                        <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                        <button type="submit" class="btn btn-danger btn-block">删除订单（订单已完成）</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    {% empty %}
+        <div class="alert alert-info">没有订单。</div>
+    {% endfor %}
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="../../static/js/js1/bootstrap.min.js"></script>
+</body>
+</html>

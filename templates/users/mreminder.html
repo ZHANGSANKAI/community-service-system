@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用药提醒</title>
+    <link rel="stylesheet" href="../../static/css/css1/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-3">用药提醒列表</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>药品名称</th>
+                <th>提醒时间</th>
+                <th>药品图片</th>
+                <th>语音提醒</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medication in medications %}
+            <tr>
+                <td>{{ medication.name }}</td>
+                <td>{{ medication.reminder_time }}</td>
+                <td>
+                    {% if medication.image %}
+                        <img src="{{ medication.image.url }}" alt="{{ medication.name }}" style="height:100px;">
+                    {% else %}
+                        无图片
+                    {% endif %}
+                </td>
+                <td>
+                    <audio controls>
+                        <<source src="{{ medication.audio.url }}" type="audio/mpeg">
+                        您的浏览器不支持音频元素。
+                    </audio>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">没有用药提醒。</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="../../static/js/js1/bootstrap.min.js"></script>
+</body>
+</html>

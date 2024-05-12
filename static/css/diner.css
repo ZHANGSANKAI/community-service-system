@@ -1,0 +1,73 @@
+/*导航开始*/
+/*三栏布局：随着浏览器变化只有中间变化其他两栏不变*/
+.nav{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background: #4cae4c;
+    line-height: 50px;
+    color: ghostwhite;
+}
+.title{
+    display: flex; /* 将元素设置为弹性盒子 */
+    align-items: center; /* 在交叉轴上居中 */
+    justify-content: center; /* 在主轴上居中 */
+    flex-grow: 1;
+    height: 50px;
+    background: #4cae4c;
+    font-size: 20px;
+}
+/*导航结束*/
+/*banner样式开始*/
+.banner>img{
+    width: 100%; /* 设置图片宽度为屏幕宽度的百分之百 */
+    height: auto; /* 自动计算图片高度，保持宽高比 */
+    display: block; /* 将图片设置为块级元素，确保它在页面中独占一行 */
+}
+/*banner样式结束*/
+.restaurant{
+    width:100%;
+    height: 60px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    background: #eeeeee;
+    text-align: left;
+    line-height: 60px;
+    font-size: 50px;
+}
+
+.container{
+    padding: 0px;
+}
+
+.food1{
+    margin-bottom: 0px;
+}
+
+.food1-top{
+    display: flex;
+    width: 100%;
+    height: 160px;
+    background: #ffffff;
+}
+
+.food1-bottom{
+    width: 100%;
+    height: 40px;
+    background: #eeeeee;
+    text-align: left;
+    line-height: 40px;
+    color: #a6e1ec;
+}
+
+.food1-top>img{
+    width: 100px;
+    height: 90%;
+    margin: 0px 15px 5px 5px;
+}
+
+.food1-info{
+    text-align: left;
+    font-size: 30px;
+}
+

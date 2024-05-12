@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>上传食品</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'success_page2' %}">首页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>上传食品</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- 食品名称 -->
+        <p>
+            <label for="id_foodname">食品名称:</label>
+            <input type="text" name="foodname" id="id_foodname" required>
+        </p>
+
+        <!-- 食品分类 -->
+        <p>
+            <label for="id_foodcategory">食品分类:</label>
+            <select name="foodcategory" id="id_foodcategory" required>
+                <option value="">请选择分类</option>
+                <option value="肉类">肉类</option>
+                <option value="水产">水产</option>
+                <option value="蔬菜">蔬菜</option>
+                <option value="主食">主食</option>
+                <option value="其它">其它</option>
+            </select>
+        </p>
+
+        <!-- 食品价格 -->
+        <p>
+            <label for="id_foodprice">食品价格:</label>
+            <input type="text" name="foodprice" id="id_foodprice" required>
+        </p>
+
+        <!-- 食品描述 -->
+        <p>
+            <label for="id_fooddescribe">食品描述:</label>
+            <textarea name="fooddescribe" id="id_fooddescribe" required></textarea>
+        </p>
+
+        <!-- 食品图片 -->
+        <p>
+            <label for="id_foodpicture">食品图片:</label>
+            <input type="file" name="foodpicture" id="id_foodpicture" required>
+        </p>
+
+        <!-- 提交按钮 -->
+        <button type="submit">上传</button>
+    </form>
+
+</body>
+</html>

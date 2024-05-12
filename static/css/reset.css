@@ -1,0 +1,68 @@
+/* reset.css */
+
+/* 重置所有元素的内外边距为 0，并且将边框设为 none */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box; /* 将元素的宽度和高度包括内边距和边框在内，不包括外边距 */
+}
+
+/* HTML5 元素的显示设为 block */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+/* 给字体加上 antialiasing */
+body {
+    line-height: 1;
+}
+
+/* 移除列表元素前面的默认样式 */
+ul, ol {
+    list-style: none;
+}
+
+/* 超链接的默认样式 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 为表单元素设为 border-box，防止表单元素在不同浏览器中显示不一致 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 图片的 max-width 设为 100%，防止图片超出父元素 */
+img {
+    max-width: 100%;
+    height: auto;
+}

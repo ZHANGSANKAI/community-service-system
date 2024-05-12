@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区养老系统-注册</title>
+    <!-- 导入layui的样式表 -->
+    <link rel="stylesheet" href="../../static/lib/layui/css/layui.css">
+    <!-- 导入自己的样式表 -->
+    <link rel="stylesheet" href="../../static/css/register.css">
+</head>
+<body>
+    <!-- 头部的logo区域 -->
+    <div class="layui-main">
+        <img src="../../static/images/logo.png" alt="">
+    </div>
+
+    <!-- 注册区域 -->
+    <div class="loginAndRegBox">
+        <div class="title-box"></div>
+        <!-- 注册的div -->
+        <div class="reg-box">
+            <!-- 注册的表单 -->
+            <form class="layui-form" id="form_reg" method="post">
+                {% csrf_token %}
+                <!-- 用户姓名 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <label>
+                        <input type="text" name="username" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                    </label>
+                </div>
+                <!--电话号码-->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-cellphone"></i>
+                    <label>
+                        <input type="tel" name="phonenumber" lay-verify="required" autocomplete="off" placeholder="请输入电话号码" class="layui-input">
+                    </label>
+                </div>
+                <!--用户地址-->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-location"></i>
+                    <label>
+                        <input type="text" name="address" lay-verify="required" autocomplete="off" placeholder="请输入用户地址" class="layui-input">
+                    </label>
+                </div>
+                <!-- 密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <label>
+                        <input type="password" name="password" lay-verify="required|pwd" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                    </label>
+                </div>
+                <!-- 密码确认框 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <label>
+                        <input type="password" name="repassword" lay-verify="required|pwd|repwd" autocomplete="off" placeholder="再次确认密码" class="layui-input">
+                    </label>
+                </div>
+
+
+                <!-- 注册按钮 -->
+                <div class="layui-form-item">
+                    <!-- lay-submit是区别是否是提交按钮的关键 -->
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal" lay-submit>注册</button>
+                </div>
+                <!-- 去登录按钮 -->
+                <div class="layui-form-item links">
+                    <a href="javascript:" id="link_login">去登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 导入layui的js文件 -->
+    <script src="../../static/lib/layui/layui.all.js"></script>
+    <!-- 导入JQuery -->
+    <script src="../../static/lib/jquery.js"></script>
+    <!-- 导入自己的JavaScript脚本 -->
+    <script src="../../static/js/register.js"></script>
+</body>
+</html>

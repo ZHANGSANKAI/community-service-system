@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>维修订单管理</title>
+    <link rel="stylesheet" href="../../static/css/css1/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'success_page2' %}">首页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container mt-4">
+    <h2 class="mb-3">维修订单列表</h2>
+    {% for order in orders %}
+        <div class="card mb-4">
+            <div class="card-header">
+                订单编号：{{ order.id }} - {{ order.name }}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">姓名：{{ order.name }}</li>
+                <li class="list-group-item">电话号码：{{ order.phone_number }}</li>
+                <li class="list-group-item">地址：{{ order.address }}</li>
+                <li class="list-group-item">
+                    <audio controls>
+                        <source src="{{ order.description_audio.url }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </li>
+                <!-- 删除按钮 -->
+                <li class="list-group-item">
+                    <form action="{% url 'delete_protect' order.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">删除订单</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    {% empty %}
+        <div class="alert alert-info">没有订单。</div>
+    {% endfor %}
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="../../static/js/js1/bootstrap.min.js"></script>
+</body>
+</html>
